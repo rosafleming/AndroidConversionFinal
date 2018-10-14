@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">conversion</string>
+    <string name="title_activity_vice_selection">ViceSelectionActivity</string>
+    <string-array name="length">
+        <item>Meters</item>
+        <item>Yards</item>
+        <item>Miles</item>
+    </string-array>
+    <string-array name="volume">
+        <item>Liters</item>
+        <item>Gallons</item>
+        <item>Quarts</item>
+    </string-array>
+    <string name="title_activity_settings">settings</string>
+</resources>
