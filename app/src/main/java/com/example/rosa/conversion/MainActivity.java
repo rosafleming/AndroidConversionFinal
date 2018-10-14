@@ -3,6 +3,8 @@ package com.example.rosa.conversion;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -30,11 +32,10 @@ public class MainActivity extends AppCompatActivity {
         Button Calculate = (Button) findViewById(R.id.Calculate);
         Button Cancel = (Button) findViewById(R.id.Clear);
         Button Mode = (Button) findViewById(R.id.Mode);
-        Button Settings = (Button) findViewById(R.id.Settings);
+        //Button Settings = (Button) findViewById(R.id.Settings);
         TextView Title = (TextView) findViewById(R.id.title);
         unit1 = (TextView) findViewById(R.id.textView2);
         unit2 = (TextView) findViewById(R.id.textView3);
-
 
         Title.setText("Length Converter");
 
@@ -61,7 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-
+        toText.setOnClickListener(v ->{
+            fromText.setText("");
+        });
+        fromText.setOnClickListener(v ->{
+            toText.setText("");
+        });
         Cancel.setOnClickListener(v -> {
          toText.setText("");
          fromText.setText("");
@@ -84,13 +90,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
-
+/*
         Settings.setOnClickListener(v ->{
             Intent intent = new Intent(MainActivity.this, settings.class);
             startActivityForResult(intent, TYPE_SELECTION);
         });
+        */
+
     }
+
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mysettings,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.settings:
+                Intent intent = new Intent(MainActivity.this, settings.class);
+                startActivityForResult(intent, TYPE_SELECTION);
+        }
+        return true;
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         if(resultCode == TYPE_SELECTION){
             String toString = data.getStringExtra("to");
